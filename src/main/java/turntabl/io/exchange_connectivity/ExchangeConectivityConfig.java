@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ExchangeConectivityConfig {
-    @Value("${menu.rabbitmq.queue}")
+    @Value("${trade.engine.rabbitmq.queue}")
     String queueName;
-    @Value("${menu.rabbitmq.exchange}")
+    @Value("${trade.engine.rabbitmq.exchange}")
     String exchange;
-    @Value("${menu.rabbitmq.key}")
+    @Value("${trade.engine.rabbitmq.key}")
     private String key;
 
     @Value("${spring.rabbitmq.host}")
