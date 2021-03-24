@@ -1,4 +1,4 @@
-package turntabl.io.exchange_connectivity;
+package turntabl.io.exchange_connectivity.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

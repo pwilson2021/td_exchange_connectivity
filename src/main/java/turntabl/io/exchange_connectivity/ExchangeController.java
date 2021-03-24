@@ -1,8 +1,6 @@
 package turntabl.io.exchange_connectivity;
 
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +9,9 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import turntabl.io.exchange_connectivity.model.ExchangeMarketDataModel;
+import turntabl.io.exchange_connectivity.model.ExchangeOrder;
 import turntabl.io.exchange_connectivity.model.TradeModel;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/exchange_orders")
@@ -40,6 +34,11 @@ public class ExchangeController {
         } else {
             return client.get().uri(exchange2+"orderbook/"+ticker+"/"+side).retrieve().bodyToFlux(ExchangeOrder.class);
         }
+    }
+
+    public Mono<ExchangeMarketDataModel> fetchMarketDataByTicker (String ticker, int exchangeId) {
+        String exchange =  (exchangeId == 1 ) ? exchange1 : exchange2;
+        return client.get().uri(exchange+"/md/"+ticker).retrieve().bodyToMono(ExchangeMarketDataModel.class);
     }
 
     public void createOrder(int exchangeId, TradeModel trade) {
