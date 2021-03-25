@@ -25,6 +25,9 @@ public class ExchangeConectivityConfig {
     @Value("${spring.rabbitmq.username}")
     private String userName;
 
+    @Value("${spring.rabbitmq.port}")
+    private int port;
+
     @Bean
     Queue queue(){
         return new Queue(queueName, true);
@@ -50,6 +53,7 @@ public class ExchangeConectivityConfig {
     Binding binding(Queue queue, DirectExchange exchange){
         return BindingBuilder.bind(queue).to(exchange).with(key);
     }
+
     @Bean
     public AmqpTemplate rabTemplate(){
         final RabbitTemplate rabbitTemplate = new RabbitTemplate();

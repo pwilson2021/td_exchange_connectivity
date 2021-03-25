@@ -1,25 +1,21 @@
 package turntabl.io.exchange_connectivity.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class TradeModel {
-    @JsonProperty("product")
+public class QueueTradeModel {
     private String product;
-    @JsonProperty("quantity")
     private Integer quantity;
-    @JsonProperty("price")
     private Double price;
-    @JsonProperty("side")
     private String side;
+    private int exchangeId;
 
-    public TradeModel(String product, Integer quantity, Double price, String side) {
+    public QueueTradeModel(String product, Integer quantity, Double price, String side, int exchangeId) {
         this.product = product;
         this.quantity = quantity;
         this.price = price;
         this.side = side;
+        this.exchangeId = exchangeId;
     }
 
-    public TradeModel() {
+    public QueueTradeModel() {
     }
 
     public String getProduct() {
@@ -52,5 +48,24 @@ public class TradeModel {
 
     public void setSide(String side) {
         this.side = side;
+    }
+
+    public int getExchangeId() {
+        return exchangeId;
+    }
+
+    public void setExchangeId(int exchangeId) {
+        this.exchangeId = exchangeId;
+    }
+
+    @Override
+    public String toString() {
+        return "QueueTradeModel{" +
+                "product='" + product + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", side='" + side + '\'' +
+                ", exchangeId=" + exchangeId +
+                '}';
     }
 }
