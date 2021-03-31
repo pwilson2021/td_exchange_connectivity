@@ -13,6 +13,7 @@ import turntabl.io.exchange_connectivity.model.order.Order;
 import turntabl.io.exchange_connectivity.model.order.OrderRepository;
 import turntabl.io.exchange_connectivity.model.order.OrderService;
 import turntabl.io.exchange_connectivity.model.trade.Trade;
+import turntabl.io.exchange_connectivity.model.trade.TradeService;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -27,6 +28,8 @@ public class ExchangeController {
 
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private TradeService tradeService;
 
     @GetMapping("/api/get_order_book/{ticker}/{exchangeId}/{side}")
     public Flux<ExchangeOrder>  dynamicFetch(
@@ -67,7 +70,7 @@ public class ExchangeController {
 
         Trade storeTrade = new Trade(trade.getPrice(), orderId, trade.getQuantity(),
                 "pending", trade.getExchangeId(), order.get());
-
+        tradeService.addNewTrade(storeTrade);
         System.out.println("Order placed successfully, orderId: " + orderId);
     }
 

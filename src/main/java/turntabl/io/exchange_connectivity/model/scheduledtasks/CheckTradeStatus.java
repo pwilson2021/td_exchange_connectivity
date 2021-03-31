@@ -25,7 +25,7 @@ public class CheckTradeStatus {
     }
 
 
-    @Scheduled(fixedRate = 10000)
+    //@Scheduled(fixedRate = 10000)
     public void handleTrades() {
         System.out.println("Scheduled tasks have begun");
         List<Trade> tradeList = tradeService.findIncompleteTrades();
