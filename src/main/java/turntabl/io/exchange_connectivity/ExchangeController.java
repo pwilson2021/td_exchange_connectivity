@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 public class ExchangeController {
-    private String api_key = "240ccb53-33cf-4453-b4b0-e9ada4a7409d";
+    private String api_key = "ce7d79a8-c9d5-4e89-a41d-683dd8193403";
     private String exchange1 = "https://exchange.matraining.com/";
     private String exchange2 = "https://exchange2.matraining.com/";
 
